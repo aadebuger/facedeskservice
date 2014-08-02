@@ -10,6 +10,7 @@ from flask import send_from_directory
 
 from werkzeug import secure_filename
 import os
+import sys
 app = Flask(__name__)
 
 UPLOAD_FOLDER = '/Users/aadebuger/Documents/faces'
@@ -54,4 +55,6 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename)
 if __name__ == '__main__':
+        if len(sys.argv)>=2:
+            app.config['UPLOAD_FOLDER'] = sys.argv[1]
         app.run(host="0.0.0.0",port=5000,debug=True)

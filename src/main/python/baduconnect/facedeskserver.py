@@ -7,7 +7,7 @@ from flask import Flask
 from flask import request
 from flask import Flask, request, redirect, url_for
 from flask import send_from_directory
-
+from werkzeug import SharedDataMiddleware
 from werkzeug import secure_filename
 import os
 import sys
@@ -55,6 +55,16 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename)
 if __name__ == '__main__':
+        if len(sys.argv)>=3:
+            print 'sys',sys.argv[2]
+            localpath=sys.argv[2]
+        else:
+            localpath='../facedesk'
+        if 1:
+           app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
+                '/static': localpath
+            })
+           
         if len(sys.argv)>=2:
             app.config['UPLOAD_FOLDER'] = sys.argv[1]
         app.run(host="0.0.0.0",port=5000,debug=True)

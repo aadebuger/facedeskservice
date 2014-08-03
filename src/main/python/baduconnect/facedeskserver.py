@@ -44,10 +44,10 @@ def upload_file():
                     print 'filename=',filename
                     newfilename = getNewfilename(filename)
                     print 'newfilename=',newfilename;
-                    file1.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    file1.save(os.path.join(app.config['UPLOAD_FOLDER'], newfilename))
                     print 'ok'
                     return redirect(url_for('uploaded_file',
-                                            filename=filename))
+                                            filename=newfilename))
         except Exception,e:
             print 'Exception'
             print e

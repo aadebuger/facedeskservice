@@ -53,7 +53,7 @@ def upload_file():
                     print 'newfilename=',newfilename;
                     file1.save(os.path.join(app.config['UPLOAD_FOLDER'], newfilename))
                     print 'ok'
-                    return redirect('/rank')
+                    return redirect('/static/listr.html')
 #            return redirect(url_for('uploaded_file',
 #                                            filename=newfilename))
         except Exception,e:

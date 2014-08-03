@@ -83,5 +83,6 @@ if __name__ == '__main__':
             })
            
         if len(sys.argv)>=2:
+            UPLOAD_FOLDER= sys.argv[1]
             app.config['UPLOAD_FOLDER'] = sys.argv[1]
         app.run(host="0.0.0.0",port=5000,debug=True)

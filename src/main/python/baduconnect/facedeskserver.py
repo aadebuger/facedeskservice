@@ -11,6 +11,7 @@ from werkzeug import SharedDataMiddleware
 from werkzeug import secure_filename
 import os
 import sys
+import json
 app = Flask(__name__)
 
 UPLOAD_FOLDER = '/Users/aadebuger/Documents/faces'
@@ -33,6 +34,12 @@ def getNewfilename(filename):
 def hello_world():
     return 'Hello World!'
 
+@app.route('/rank', methods=['GET'])
+def rangList():
+    list = os.listdir(UPLOAD_FOLDER ) 
+    return json.dumps(list)
+    
+    
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':

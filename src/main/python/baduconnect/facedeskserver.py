@@ -53,8 +53,9 @@ def upload_file():
                     print 'newfilename=',newfilename;
                     file1.save(os.path.join(app.config['UPLOAD_FOLDER'], newfilename))
                     print 'ok'
-                    return redirect(url_for('uploaded_file',
-                                            filename=newfilename))
+                    return redirect('/rank')
+#            return redirect(url_for('uploaded_file',
+#                                            filename=newfilename))
         except Exception,e:
             print 'Exception'
             print e

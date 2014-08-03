@@ -30,6 +30,7 @@ def hello_world():
 def upload_file():
     if request.method == 'POST':
         try:
+                print request.files
                 file1 = request.files['file']
                 if file and allowed_file(file1.filename):
                     filename = secure_filename(file1.filename)

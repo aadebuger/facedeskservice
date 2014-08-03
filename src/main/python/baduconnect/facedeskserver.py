@@ -26,8 +26,9 @@ serialid=0
 def getNewfilename(filename):
           global serialid
           ext=os.path.splitext(filename)[1] 
-          newfilename = "%d.%s"%(serialid,ext)
+          newfilename = "%d.jpg"%(serialid,ext)
           serialid=serialid+1
+          return newfilename
 @app.route('/')
 def hello_world():
     return 'Hello World!'

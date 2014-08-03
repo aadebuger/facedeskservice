@@ -21,7 +21,13 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-           
+
+serialid=0
+def getNewfilename(filename):
+          global serialid
+          ext=os.path.splitext(filename)[1] 
+          newfilename = "%d.%s"%(serialid,ext)
+          serialid=serialid+1
 @app.route('/')
 def hello_world():
     return 'Hello World!'
@@ -35,6 +41,8 @@ def upload_file():
                 if file and allowed_file(file1.filename):
                     filename = secure_filename(file1.filename)
                     print 'filename=',filename
+                    newfilename = getNewfilename(filename)
+                    print 'newfilename=',newfilename;
                     file1.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                     print 'ok'
                     return redirect(url_for('uploaded_file',
